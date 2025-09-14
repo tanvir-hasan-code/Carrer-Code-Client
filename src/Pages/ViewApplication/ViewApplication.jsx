@@ -9,20 +9,20 @@ const ViewApplication = () => {
 
   const handleStatusChange = (e, id) => {
     axios
-      .patch(`http://localhost:5000/applications/${id}`, {
+      .patch(`https://career-code-server-lilac.vercel.app/applications/${id}`, {
         status: e.target.value,
       })
-		.then((res) => {
-			if (res.data.modifiedCount) {
-			  Swal.fire({
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
             position: "center",
             icon: "success",
             title: "Status Has Been Updated",
             showConfirmButton: false,
             timer: 1500,
           });
-		  }
-	  })
+        }
+      })
       .catch((error) => console.log(error));
   };
 

@@ -1,3 +1,5 @@
-export const jobCreatedByPromise = email => {
-	return fetch(`http://localhost:5000/jobs/applications?email=${email}`).then(res => res.json())
-}
+export const jobCreatedByPromise = (email) => {
+  return fetch(
+    `https://career-code-server-lilac.vercel.app/jobs/applications?email=${email}`
+  ).then((res) => res.json());
+};

@@ -36,7 +36,7 @@ const AddJob = () => {
     // Post On Database
 
     axios
-      .post("http://localhost:5000/jobs", newJob)
+      .post("https://career-code-server-lilac.vercel.app/jobs", newJob)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

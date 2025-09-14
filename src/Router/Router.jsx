@@ -12,51 +12,79 @@ import MyPostedJobs from "../Pages/MyPostedJobs/MyPostedJobs";
 import ViewApplication from "../Pages/ViewApplication/ViewApplication";
 
 const router = createBrowserRouter([
-	{
-		path: '/',
-		Component: RootLayout,
-		hydrateFallbackElement:<span className="loading loading-spinner text-neutral"></span>,
-		children: [
-			{
-				index: true,
-				Component: Home
-			}, 
-			{
-				path: '/register',
-				Component: Register
-			},
-			{
-				path: '/signin',
-				Component: SignIn
-			},
-			{
-				path: '/jobs/:id',
-				loader: ({params})=>fetch(`http://localhost:5000/jobs/${params.id}`),
-				Component: Details
-			},
-			{
-				path: '/jobApply/:id',
-				element: <PrivateRoute><JobApply/></PrivateRoute>
-			},
-			{
-				path: '/myApplications',
-				element: <PrivateRoute><MyApplications/></PrivateRoute>
-			},
-			{
-				path: '/addJob',
-				element: <PrivateRoute><AddJob/></PrivateRoute>
-			},
-			{
-				path: "/myPostedJobs",
-				element: <PrivateRoute><MyPostedJobs/></PrivateRoute>
-			},
-			{
-				path: '/applications/job/:job_id',
-				loader: ({params})=>fetch(`http://localhost:5000/applications/job/${params.job_id}`),
-				element: <PrivateRoute><ViewApplication/></PrivateRoute>
-			}
-		]
-	},
-])
+  {
+    path: "/",
+    Component: RootLayout,
+    hydrateFallbackElement: (
+      <span className="loading loading-spinner text-neutral"></span>
+    ),
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+      {
+        path: "/signin",
+        Component: SignIn,
+      },
+      {
+        path: "/jobs/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://career-code-server-lilac.vercel.app/jobs/${params.id}`
+          ),
+        Component: Details,
+      },
+      {
+        path: "/jobApply/:id",
+        element: (
+          <PrivateRoute>
+            <JobApply />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myApplications",
+        element: (
+          <PrivateRoute>
+            <MyApplications />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addJob",
+        element: (
+          <PrivateRoute>
+            <AddJob />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myPostedJobs",
+        element: (
+          <PrivateRoute>
+            <MyPostedJobs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/applications/job/:job_id",
+        loader: ({ params }) =>
+          fetch(
+            `https://career-code-server-lilac.vercel.app/applications/job/${params.job_id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <ViewApplication />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;
